@@ -30,9 +30,9 @@ const mergeObjects = (current, updates) => {
 /**
  * Merge a user config with the default config.
  * 
- * @param {import('types').DefaultConfig} dconfig The default config.
+ * @param {import('./index.js').DefaultConfig} dconfig The default config.
  * @param {import('htmlfy').Config} config The user config.
- * @returns {import('types').ValidatedConfig}
+ * @returns {import('./index.js').ValidatedConfig}
  */
 export const mergeConfig = (dconfig, config) => {
   /**
@@ -46,7 +46,7 @@ export const mergeConfig = (dconfig, config) => {
  * Validate any passed-in config options and merge with CONFIG.
  * 
  * @param {import('htmlfy').Config} config
- * @returns {import('types').ValidatedConfig}
+ * @returns {import('./index.js').ValidatedConfig}
  */
 export const validateConfig = (config) => {
   if (typeof config !== 'object') throw 'Config must be an object.'
