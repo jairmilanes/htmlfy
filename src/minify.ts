@@ -7,7 +7,7 @@ import { entify } from "./entify.js"
  * @param {string} html
  * @returns A minified HTML string.
  */
-export const minify = (html) => {
+export const minify = (html: string): string => {
   /**
    * Ensure textarea content is specially minified and protected
    * before general minification.

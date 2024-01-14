@@ -1,8 +1,5 @@
 /* Testing. */
-import { closify } from './src/closify'
-import { entify } from './src/entify'
-import { minify } from './src/minify'
-import { prettify } from './src/prettify'
+const { closify, entify, minify, prettify } = require('./dist')
 
 const uhtml = `<form id="3"     >     <!-- 
       

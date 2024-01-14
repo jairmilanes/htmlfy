@@ -1,16 +1,24 @@
 {
   "compilerOptions": {
-    "allowJs": true,
+    "target": "ES2017",
+    "module": "CommonJS",
+    "outDir": "./dist",
     "allowSyntheticDefaultImports": true,
-    "checkJs": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "noEmit": true,
-    "paths": {
-      "types": ["./src/types/internal.d.ts"]
-    },
+    "moduleResolution": "node",
+    "rootDir": "./src",
+    "baseUrl": ".",
     "strict": true,
-    "target": "esnext"
+    "declaration": true,
+    "esModuleInterop": true,
+    "skipLibCheck": false,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "typeRoots": [
+      "src/types",
+      "node_modules/@types"
+    ]
   },
-  "include": [ "src/**/*", "index.js", "types/index.d.ts" ]
+  "include": [
+    "./src/**/*"
+  ]
 }

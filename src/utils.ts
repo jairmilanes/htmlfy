@@ -1,13 +1,10 @@
 import { CONFIG } from './constants.js'
+import {Config} from "./types";
 
 /**
  * Generic utility which merges two objects.
- * 
- * @param {any} current
- * @param {any} updates
- * @returns {any}
  */
-const mergeObjects = (current, updates) => {
+const mergeObjects = (current: any, updates: any) => {
   if (!current || !updates)
     throw new Error("Both 'current' and 'updates' must be passed-in to merge()")
   if (typeof current !== 'object' || typeof updates !== 'object' || Array.isArray(current) || Array.isArray(updates))
@@ -29,12 +26,8 @@ const mergeObjects = (current, updates) => {
 
 /**
  * Merge a user config with the default config.
- * 
- * @param {import('./index.js').DefaultConfig} dconfig The default config.
- * @param {import('htmlfy').Config} config The user config.
- * @returns {import('./index.js').ValidatedConfig}
  */
-export const mergeConfig = (dconfig, config) => {
+export const mergeConfig = (dconfig: Config, config: Config) => {
   /**
    * We need to make a deep copy of `dconfig`,
    * otherwise we end up altering the original `CONFIG` because `dconfig` is a reference to it.
@@ -44,14 +37,11 @@ export const mergeConfig = (dconfig, config) => {
 
 /**
  * Validate any passed-in config options and merge with CONFIG.
- * 
- * @param {import('htmlfy').Config} config
- * @returns {import('./index.js').ValidatedConfig}
  */
-export const validateConfig = (config) => {
+export const validateConfig = (config: Config) => {
   if (typeof config !== 'object') throw 'Config must be an object.'
 
-  const config_empty = !(Object.hasOwn(config, 'tab_size') || Object.hasOwn(config, 'strict'))
+  const config_empty = !(config['tab_size'] || config['strict'])
   if (config_empty) return CONFIG
 
   let tab_size = config.tab_size
@@ -71,7 +61,7 @@ export const validateConfig = (config) => {
     config.tab_size = tab_size
   }
 
-  if (Object.hasOwn(config, 'strict') && typeof config.strict !== 'boolean') throw 'Strict config must be a boolean.' 
+  if (config['strict'] && typeof config.strict !== 'boolean') throw 'Strict config must be a boolean.'
 
   return mergeConfig(CONFIG, config)
 

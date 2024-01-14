@@ -1,29 +1,24 @@
 {
-	"name": "htmlfy",
-	"version": "0.1.0",
-	"description": "HTML formatter yo!. Prettify, minify, and more!",
-	"scripts": {
-		"check": "tsc",
-		"test": "bun index.js"
-	},
-	"exports": {
-		".": {
-			"types": "./types/index.d.ts",
-			"import": "./src/index.js"
-		}
-	},
-	"files": [
-		"src",
-    	"types"
-	],
-	"devDependencies": {
-		"typescript": "^5.3.3"
-	},
-	"types": "types/index.d.ts",
-	"type": "module",
-	"repository": {
+  "name": "htmlfy",
+  "version": "0.1.0",
+  "description": "HTML formatter yo!. Prettify, minify, and more!",
+  "scripts": {
+    "check": "tsc",
+    "test": "node index.js",
+    "build": "tsc -p ./tsconfig.json"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "./dist"
+  ],
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "type": "commonjs",
+  "repository": {
     "type": "git",
-    "url": "git+https://github.com/j4w8n/htmlfy.git"
+    "url": "git@github.com:jairmilanes/htmlfy.git"
   },
   "license": "MIT",
   "bugs": {

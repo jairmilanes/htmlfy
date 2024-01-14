@@ -10,7 +10,7 @@
  * @returns {string}
  * @example <textarea>3 > 2</textarea> => <textarea>3 &gt; 2</textarea>
  */
-export const entify = (html, minify = false) => {
+export const entify = (html: string, minify = false): string => {
   /* Trim any combination of leading line returns and/or spaces. */
   html = html
     .replace(/(<textarea[^>]*>)\n+/g, '$1')

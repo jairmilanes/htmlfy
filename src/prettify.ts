@@ -1,31 +1,19 @@
 import { closify } from './closify.js'
 import { minify } from './minify.js'
 import { validateConfig } from './utils.js'
-import { CONFIG } from './constants.js'
+import {CONFIG} from './constants.js'
+import {Config, Convert} from "./types";
 
-/**
- * @type {boolean}
- */
-let strict
+let strict: boolean
 
-/**
- * @type {{ line: string[] }}
- */
-const convert = {
+const convert: Convert = {
   line: []
 }
 
 /**
  * Isolate tags, content, and comments.
- * 
- * @param {string} html
- * @returns {string}
- * @example <div>Hello World!</div> => 
- *  [#-# : 0 : <div> : #-#]
- *  Hello World!
- *  [#-# : 1 : </div> : #-#]
  */
-const enqueue = (html) => {
+const enqueue = (html: string) => {
   convert.line = []
   let i = -1
 
@@ -41,11 +29,8 @@ const enqueue = (html) => {
 
 /**
  * Preprocess the HTML.
- * 
- * @param {string} html
- * @returns {string}
  */
-const preprocess = (html) => {
+const preprocess = (html: string) => {
   html = closify(html)
   html = minify(html)
   html = enqueue(html)
@@ -53,13 +38,7 @@ const preprocess = (html) => {
   return html
 }
 
-/**
- * 
- * @param {string} html 
- * @param {number} step 
- * @returns {string}
- */
-const process = (html, step) => {
+const process = (html: string, step: number): string => {
   /* Track current number of indentations needed. */
   let indents = ''
 
@@ -108,7 +87,7 @@ const process = (html, step) => {
           .replace(' : #-#]', '')
 
         /* Pad the string with spaces and return. */
-        return result.padStart(result.length + (step * offset))
+        return result.toString().padStart(result.length + (step * offset))
       })
   })
 
@@ -125,12 +104,8 @@ const process = (html, step) => {
 
 /**
  * Format HTML with line returns and indentations.
- * 
- * @param {string} html 
- * @param {import('htmlfy').Config} [config]
- * @returns {string}
  */
-export const prettify = (html, config) => {
+export const prettify = (html: string, config: Config) => {
   const validated_config = config ? validateConfig(config) : CONFIG
   strict = validated_config.strict
 
